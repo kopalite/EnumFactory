@@ -1,7 +1,7 @@
 # EnumFactory
 
 Simple Factory Pattern, naming convention based, with 1-to-1 mapping between custom enum values and named instances.
-Variant classes being instantiated by factory can remain clean: all you need is follow the naming convention.
+Variant classes being instantiated by factory can remain clean: all you need is to follow the naming convention.
 Reduces boilerplate factory implementation code to one-liners. Improves open/closed principle, 
 by closing off the factory DI registration code: it stays the same forever,
 even when new variant classes and enumeration values are added along the way.
