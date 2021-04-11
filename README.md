@@ -64,7 +64,7 @@ public class OrderController : Controller
 	    _factory = factory;
 	}
 	
-	[HttpPost]
+	[HttpPut]
 	public async Task UpdateOrder([FromBody]Order order)
 	{
 	    //for OrderType.LocalOrder, you'll get LocalOrderService.
