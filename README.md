@@ -67,8 +67,7 @@ public class OrderController : Controller
 	[HttpPost]
 	public async Task UpdateOrder([FromBody]Order order)
 	{
-	    //if order.OrderType is OrderType.Local, you will get LocalOrderService instance.
-		
+	    //for OrderType.LocalOrder, you'll get LocalOrderService.
 	    var service = _factory.GetService(order.OrderType);
 		
 	    service.UpdateOrder(order); 
