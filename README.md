@@ -52,7 +52,7 @@ public class OrderController : Controller
 {
 	private readonly IEnumFactory<OrderType, IOrderService> _factory;
 
-    public OrderController(IEnumFactory<OrderType, IOrderService> factory)
+	public OrderController(IEnumFactory<OrderType, IOrderService> factory)
 	{
 	    _factory = factory;
 	}
