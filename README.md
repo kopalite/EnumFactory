@@ -5,8 +5,10 @@ Variant classes being instantiated by factory can remain clean: all you need is 
 Reduces boilerplate factory implementation code to one-liners. Improves open/closed principle, 
 by closing off the factory DI registration code: it stays the same forever,
 even when new variant classes and enumeration values are added along the way.
+Supports scoped, transient and singleton lifecycles for factory and variant classes.
+Variant classes can implement a common interface or inherit from common (abstract) class. 
 
-# QuickStart example:
+# QuickStart example
 
 - add any enumeration describing the variant classes that factory should pick up:
 
@@ -25,17 +27,17 @@ public enum OrderType
 ```
 public interface IOrderService
 {
-
+	Task UpdateOrder(Order order);
 }
 
 public class LocalOrderService : IOrderService
 {
-
+	public Task UpdateOrder(Order order) { } 
 }
 
 public class AmazonOrderService : IOrderService
 {
-
+	public Task UpdateOrder(Order order) { } 
 }
 ```
 
@@ -43,6 +45,12 @@ public class AmazonOrderService : IOrderService
 
 ```
 services.AddEnumFactory<OrderType, IOrderService>();
+```
+
+- default lifecycle is Scoped, but you can chose other:
+
+```
+services.AddEnumFactory<OrderType, IOrderService>(Lifecycle.Singleton);
 ```
 
 - inject factory where needed and enjoy IOrderService services! It's that simple :)
