@@ -52,7 +52,7 @@ namespace EnumFactory
 
             if (string.IsNullOrWhiteSpace(suffix))
             {
-                throw new Exception($"Could not determine suffix for EnumFactory named instances basing on {serviceTypeName}. It should follow the (EnumValue){suffix} convention.");
+                throw new Exception($"Could not determine suffix for factory named instances basing on {serviceTypeName}. It should be pascal cased type name (e.g. IOrderService, so Service will be taken as suffix).");
             }
 
             return suffix;
