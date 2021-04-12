@@ -101,19 +101,19 @@ namespace EnumFactory.Test
         }
 
         [Fact]
-        public void CorrectBaseClassSetupShouldSucceed()
+        public void CorrectVariationsSetupShouldSucceed()
         {
             //Arrange
-            var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectBaseClassSetup, CorrectBaseClassSetupService>());
+            var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectVariationsSetup, CorrectVariationsSetupService>());
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectBaseClassSetup, CorrectBaseClassSetupService>>();
-            var b1 = factory.GetService(CorrectBaseClassSetup.Correct1B);
-            var bc2 = factory.GetService(CorrectBaseClassSetup.Correct2B);
+            var factory = provider.GetService<IEnumFactory<CorrectVariationsSetup, CorrectVariationsSetupService>>();
+            var v1 = factory.GetService(CorrectVariationsSetup.Correct1V);
+            var v2 = factory.GetService(CorrectVariationsSetup.Correct2V);
 
             //Assert
-            Assert.IsType<Correct1BService>(b1);
-            Assert.IsType<Correct2BService>(bc2);
+            Assert.IsType<Correct1VSuffix1>(v1);
+            Assert.IsType<Correct2VSuffix2>(v2);
         }
 
         [Fact]

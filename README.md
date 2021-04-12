@@ -21,9 +21,10 @@ public enum OrderType
 } 
 ```
 
-- add interface ISomething(Suffix) and implementations with class names following the format (EnumValue)(Suffix). 
-  Suffix can be anything (Service, Manager, Reader etc.) as long as it's unique for the interface and all implementations. 
-  It doesn't need to be an interface as well, maybe an (abstract) class suits your needs better.
+- add the abstraction for classes that will be constructed by the factory, and some implementations. 
+  Abstraction can be interface or (abstract) class, in this case, it's the IOrderService interface.
+  Naming convention: implementation class name must starts with the related enum value (case sensitive). 
+  In this example, for **LocalOrder** enum value, we should have **LocalOrder(AnySuffix)** class, and so on.
 
 ```
 public interface IOrderService

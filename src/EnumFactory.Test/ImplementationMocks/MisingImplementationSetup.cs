@@ -14,7 +14,7 @@
     {
     }
 
-    public class Missing2WronglyNamedService : IMissingImplSetupService
+    public class MissingXWronglyNamedService : IMissingImplSetupService
     {
     }
 
