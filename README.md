@@ -3,10 +3,12 @@
 - Simple Factory Pattern, convention based, with 1-1 mapping between enum values and named instances. 
 - Variant classes being instantiated by factory can remain clean: just follow the proper naming.
 - Reduces boilerplate code by having factory implementation and DI registration together in one-liner.
-- Adding new variant classes and enumeration values can be done seamlessly as pure extension.
-- Supports scoped, transient and singleton lifecycles for factory and variant classes.
+- Adding new variant classes and enum values is pure extension (in line with open/closed principle).
+- DI friendly: injectable factory, no service-locator anti-pattern (in line with .NET DI).
+- Lifecycle friendly: scoped, transient and singleton lifecycles are options for all elements.
 - Variant classes can implement a common interface or inherit from common (abstract) class. 
-- DI friendly: IServiceProvider usage is hidden by factory and DI is supported in variant classes.
+- No reflection after the setup: types map is cached for each specific factory type.
+
 
 # QuickStart example
 
