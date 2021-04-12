@@ -2,15 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>1.5.0</Version>
+    <Version>1.7.0</Version>
     <Description>Simple Factory Pattern, convention based, with 1-1 mapping between enum values and named instances.</Description>
     <RepositoryUrl>https://github.com/kopalite/EnumFactory</RepositoryUrl>
     <PackageTags>Factory Pattern</PackageTags>
-    <PackageReleaseNotes>- support for custom lifecycle of factory and variant classes added</PackageReleaseNotes>
+    <PackageReleaseNotes>- support for custom lifecycle of factory and variant classes added
+- enum-types map is cashed per EnumFactory&lt;,&gt; closed generic type</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Ivan Kopcanski</Authors>
     <Company></Company>
     <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>1.7.0.0</AssemblyVersion>
+    <FileVersion>1.7.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

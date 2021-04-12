@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
+using System.Collections.Concurrent;
 
 namespace EnumFactory
 {
@@ -34,8 +35,9 @@ namespace EnumFactory
                 };
             }
 
-            IEnumFactory<TEnum, TServiceType> factory(IServiceProvider sp) => new EnumFactory<TEnum, TServiceType>(sp, serviceTypesMap);
-
+            EnumFactory<TEnum, TServiceType>.ServiceTypes = new ConcurrentDictionary<TEnum, Type>(serviceTypesMap);
+            static IEnumFactory<TEnum, TServiceType> factory(IServiceProvider sp) => new EnumFactory<TEnum, TServiceType>(sp);
+            
             _ = lifecycle switch
             {
                 Lifecycle.Scoped => services.AddScoped(factory),
@@ -67,7 +69,7 @@ namespace EnumFactory
             return deriviedTypes;
         }
 
-        private static Dictionary<TEnum, Type> GetServiceTypesMap<TEnum>(Type[] serviceTypes, string suffix) where TEnum : struct, Enum
+        private static IDictionary<TEnum, Type> GetServiceTypesMap<TEnum>(Type[] serviceTypes, string suffix) where TEnum : struct, Enum
         {
             var serviceTypesMap = Enum.GetValues<TEnum>().ToDictionary(x => x, x => serviceTypes.FirstOrDefault(st => st.Name == x + suffix));
             var missingTypes = string.Join(',', serviceTypesMap.Where(x => x.Value == null).Select(x => x.Key));

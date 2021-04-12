@@ -20,8 +20,9 @@ public enum OrderType
 } 
 ```
 
-- add interface I(Some)Suffix and implementations with class names following the format (EnumValue)Suffix. 
+- add interface ISomething(Suffix) and implementations with class names following the format (EnumValue)(Suffix). 
   Suffix can be anything (Service, Manager, Reader etc.) as long as it's unique for the interface and all implementations. 
+  It doesn't need to be an interface as well, maybe an (abstract) class suits your needs better.
 
 ```
 public interface IOrderService

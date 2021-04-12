@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace EnumFactory
@@ -10,20 +11,19 @@ namespace EnumFactory
 
     internal sealed class EnumFactory<TEnum, TServiceType> : IEnumFactory<TEnum, TServiceType> where TEnum : struct, Enum where TServiceType : class
     {
+        internal static IDictionary<TEnum, Type> ServiceTypes;
         private readonly IServiceProvider _serviceProvider;
-        private readonly Dictionary<TEnum, Type> _serviceTypes;
         
 
-        public EnumFactory(IServiceProvider serviceProvider, Dictionary<TEnum, Type> serviceTypes)
+        public EnumFactory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _serviceTypes = serviceTypes;
         }
 
         public TServiceType GetService(TEnum serviceName)
         {
-            var serviceType = _serviceTypes[serviceName];
-            return (dynamic)_serviceProvider.GetService(serviceType);
+            var serviceType = ServiceTypes[serviceName];
+            return (TServiceType)_serviceProvider.GetService(serviceType);
         }
     }
 }
