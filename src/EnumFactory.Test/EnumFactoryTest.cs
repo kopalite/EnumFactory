@@ -81,6 +81,26 @@ namespace EnumFactory.Test
         }
 
         [Fact]
+        public void CorrectDISupportSetupShouldSucceed()
+        {
+            //Arrange
+            var provider = GetServiceProvider(x => 
+            {
+                x.AddEnumFactory<DISupportSetup, IDISupportSetupService>();
+                x.AddScoped<Dependency>();
+            });
+
+            //Act 
+            var factory = provider.GetService<IEnumFactory<DISupportSetup, IDISupportSetupService>>();
+            var d1 = factory.GetService(DISupportSetup.DISupport1);
+            var d2 = factory.GetService(DISupportSetup.DISupport2);
+
+            //Assert
+            Assert.IsType<DISupport1Service>(d1);
+            Assert.IsType<DISupport2Service>(d2);
+        }
+
+        [Fact]
         public void CorrectBaseClassSetupShouldSucceed()
         {
             //Arrange

@@ -6,6 +6,7 @@
 - Adding new variant classes and enumeration values can be done seamlessly as pure extension.
 - Supports scoped, transient and singleton lifecycles for factory and variant classes.
 - Variant classes can implement a common interface or inherit from common (abstract) class. 
+- DI friendly: IServiceProvider usage is hidden by factory and DI is supported in variant classes.
 
 # QuickStart example
 

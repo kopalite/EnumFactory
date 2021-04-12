@@ -36,13 +36,12 @@ namespace EnumFactory
             }
 
             EnumFactory<TEnum, TServiceType>.ServiceTypes = new ConcurrentDictionary<TEnum, Type>(serviceTypesMap);
-            static IEnumFactory<TEnum, TServiceType> factory(IServiceProvider sp) => new EnumFactory<TEnum, TServiceType>(sp);
             
             _ = lifecycle switch
             {
-                Lifecycle.Scoped => services.AddScoped(factory),
-                Lifecycle.Transient => services.AddTransient(factory),
-                Lifecycle.Singleton => services.AddSingleton(factory),
+                Lifecycle.Scoped => services.AddScoped<IEnumFactory<TEnum, TServiceType>, EnumFactory<TEnum, TServiceType>>(),
+                Lifecycle.Transient => services.AddTransient<IEnumFactory<TEnum, TServiceType>, EnumFactory<TEnum, TServiceType>>(),
+                Lifecycle.Singleton => services.AddSingleton<IEnumFactory<TEnum, TServiceType>, EnumFactory<TEnum, TServiceType>>(),
                 _ => throw new ArgumentOutOfRangeException(nameof(lifecycle))
             };
         }  
