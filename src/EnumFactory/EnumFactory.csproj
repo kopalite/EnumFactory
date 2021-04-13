@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>1.8.1</Version>
+    <Version>1.9.0</Version>
     <Description>Simple Factory Pattern, convention based, with 1-1 mapping between enum values and named instances.</Description>
     <RepositoryUrl>https://github.com/kopalite/EnumFactory</RepositoryUrl>
     <PackageTags>Factory Pattern DI IOC SOLID</PackageTags>
     <PackageReleaseNotes>- support for custom lifecycle of factory and variant classes added
 - enum-types map is cashed per EnumFactory&lt;,&gt; closed generic type
-- suffix for implementation classes is made arbitrary</PackageReleaseNotes>
+- naming convention is made more flexible (refer the README.md)</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Ivan Kopcanski</Authors>
     <Company></Company>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.8.1.0</AssemblyVersion>
-    <FileVersion>1.8.1.0</FileVersion>
+    <AssemblyVersion>1.9.0.0</AssemblyVersion>
+    <FileVersion>1.9.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

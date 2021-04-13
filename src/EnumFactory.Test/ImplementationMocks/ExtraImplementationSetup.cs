@@ -25,7 +25,7 @@ namespace EnumFactory.Test.ImplementationMocks
     {
     }
 
-    public class Extra3Service : IExtraImplSetupService
+    public class Extra1ServiceDecorator : IExtraImplSetupService
     {
     }
 }

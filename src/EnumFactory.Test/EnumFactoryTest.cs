@@ -23,7 +23,7 @@ namespace EnumFactory.Test
             var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>(Lifecycle.Scoped));
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
+            var factory = provider.GetService<IFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
             var c1 = factory.GetService(CorrectInterfaceSetup.Correct1);
             var c2 = factory.GetService(CorrectInterfaceSetup.Correct2);
 
@@ -39,7 +39,7 @@ namespace EnumFactory.Test
             var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>(Lifecycle.Transient));
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
+            var factory = provider.GetService<IFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
             var c1 = factory.GetService(CorrectInterfaceSetup.Correct1);
             var c2 = factory.GetService(CorrectInterfaceSetup.Correct2);
 
@@ -55,7 +55,7 @@ namespace EnumFactory.Test
             var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>(Lifecycle.Singleton));
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
+            var factory = provider.GetService<IFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
             var c1 = factory.GetService(CorrectInterfaceSetup.Correct1);
             var c2 = factory.GetService(CorrectInterfaceSetup.Correct2);
 
@@ -71,7 +71,7 @@ namespace EnumFactory.Test
             var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>());
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
+            var factory = provider.GetService<IFactory<CorrectInterfaceSetup, ICorrectInterfaceSetupService>>();
             var c1 = factory.GetService(CorrectInterfaceSetup.Correct1);
             var c2 = factory.GetService(CorrectInterfaceSetup.Correct2);
 
@@ -91,7 +91,7 @@ namespace EnumFactory.Test
             });
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<DISupportSetup, IDISupportSetupService>>();
+            var factory = provider.GetService<IFactory<DISupportSetup, IDISupportSetupService>>();
             var d1 = factory.GetService(DISupportSetup.DISupport1);
             var d2 = factory.GetService(DISupportSetup.DISupport2);
 
@@ -101,19 +101,19 @@ namespace EnumFactory.Test
         }
 
         [Fact]
-        public void CorrectVariationsSetupShouldSucceed()
+        public void CorrectBaseClassSetupShouldSucceed()
         {
             //Arrange
-            var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectVariationsSetup, CorrectVariationsSetupService>());
+            var provider = GetServiceProvider(x => x.AddEnumFactory<CorrectBaseClassSetup, CorrectBaseClassSetupService>());
 
             //Act 
-            var factory = provider.GetService<IEnumFactory<CorrectVariationsSetup, CorrectVariationsSetupService>>();
-            var v1 = factory.GetService(CorrectVariationsSetup.Correct1V);
-            var v2 = factory.GetService(CorrectVariationsSetup.Correct2V);
+            var factory = provider.GetService<IFactory<CorrectBaseClassSetup, CorrectBaseClassSetupService>>();
+            var b1 = factory.GetService(CorrectBaseClassSetup.Correct1B);
+            var b2 = factory.GetService(CorrectBaseClassSetup.Correct2B);
 
             //Assert
-            Assert.IsType<Correct1VSuffix1>(v1);
-            Assert.IsType<Correct2VSuffix2>(v2);
+            Assert.IsType<Correct1BService>(b1);
+            Assert.IsType<Correct2BService>(b2);
         }
 
         [Fact]
@@ -124,10 +124,19 @@ namespace EnumFactory.Test
         }
 
         [Fact]
-        public void ExtraImplementationSetupShouldFail()
+        public void ExtraImplementationSetupShouldSucceed()
         {
-            //Arrange, Act, Assert
-            Assert.Throws<Exception>(() => GetServiceProvider(x => x.AddEnumFactory<ExtraImplSetup, IExtraImplSetupService>()));
+            //Arrange
+            var provider = GetServiceProvider(x => x.AddEnumFactory<ExtraImplSetup, IExtraImplSetupService>());
+
+            //Act 
+            var factory = provider.GetService<IFactory<ExtraImplSetup, IExtraImplSetupService>>();
+            var e1 = factory.GetService(ExtraImplSetup.Extra1);
+            var e2 = factory.GetService(ExtraImplSetup.Extra2);
+
+            //Assert
+            Assert.IsType<Extra1Service>(e1);
+            Assert.IsType<Extra2Service>(e2);
         }
     }
 }

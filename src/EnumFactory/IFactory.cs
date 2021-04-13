@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 namespace EnumFactory
 {
-    public interface IEnumFactory<TEnum, TServiceType> where TEnum : struct, Enum
+    public interface IFactory<TEnum, TServiceType> where TEnum : struct, Enum
     {
         TServiceType GetService(TEnum name);
     }
 
-    internal sealed class EnumFactory<TEnum, TServiceType> : IEnumFactory<TEnum, TServiceType> where TEnum : struct, Enum where TServiceType : class
+    internal sealed class Factory<TEnum, TServiceType> : IFactory<TEnum, TServiceType> where TEnum : struct, Enum where TServiceType : class
     {
         internal static IDictionary<TEnum, Type> ServiceTypes;
         private readonly IServiceProvider _serviceProvider;
         
 
-        public EnumFactory(IServiceProvider serviceProvider)
+        public Factory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
