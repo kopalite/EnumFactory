@@ -50,7 +50,7 @@ public class AmazonOrderService : IOrderService
 }
 ```
 
-- use IServiceCollection extension method to register IEnumFactory<OrderType, IOrderService>:
+- use IServiceCollection extension method to register IFactory<OrderType, IOrderService>:
 
 ```
 services.AddEnumFactory<OrderType, IOrderService>();
