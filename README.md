@@ -23,10 +23,15 @@ public enum OrderType
 } 
 ```
 
-- add the abstraction for classes that will be constructed by the factory, and some implementations. 
-  Abstraction can be interface or (abstract) class, in this case, it's the IOrderService interface.
-  Naming convention: implementation class name must starts with the related enum value (case sensitive). 
-  In this example, for **LocalOrder** enum value, we should have **LocalOrder(AnySuffix)** class, and so on.
+- add the abstraction for objects that will be constructed by the factory, and some implementations. 
+  Abstraction can be interface or (abstract) class. in this case, it's the IOrderService interface
+  and all it's implementations. Note: you can have as many implementations as you want,
+  but there must be one for each enum value, as per naming convention (others are ignored).
+  
+- mapped implementation class names must start with the related enum value 
+  and end with last word from abstraction name (case sensitive). 
+  In this example, for **LocalOrder** enum value and **IOrderService** interface 
+  we should have **LocalOrderService** class, and so on.
 
 ```
 public interface IOrderService
@@ -62,9 +67,9 @@ services.AddEnumFactory<OrderType, IOrderService>(Lifecycle.Singleton);
 ```
 public class OrderController : Controller
 {
-	private readonly IEnumFactory<OrderType, IOrderService> _factory;
+	private readonly IFactory<OrderType, IOrderService> _factory;
 
-	public OrderController(IEnumFactory<OrderType, IOrderService> factory)
+	public OrderController(IFactory<OrderType, IOrderService> factory)
 	{
 	    _factory = factory;
 	}
